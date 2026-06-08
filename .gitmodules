@@ -1,0 +1,42 @@
+[submodule "physics/SPACE"]
+	path = physics/SPACE
+	url = https://github.com/AiTenetAgency101/SPACE.git
+[submodule "physics/Time"]
+	path = physics/Time
+	url = https://github.com/AiTenetAgency101/Time.git
+[submodule "physics/aTom"]
+	path = physics/aTom
+	url = https://github.com/AiTenetAgency101/aTom.git
+[submodule "physics/maTTer"]
+	path = physics/maTTer
+	url = https://github.com/backupsonbackupsrobby-cyber/maTTer.git
+[submodule "physics/EnerGi"]
+	path = physics/EnerGi
+	url = https://github.com/backupsonbackupsrobby-cyber/EnerGi.git
+[submodule "physics/MotioN"]
+	path = physics/MotioN
+	url = https://github.com/backupsonbackupsrobby-cyber/MotioN.git
+[submodule "agents/T800-AiGC"]
+	path = agents/T800-AiGC
+	url = https://github.com/AiAgency-Lab/T800-AiGC.git
+[submodule "truth/atmospheric-truth-layer"]
+	path = truth/atmospheric-truth-layer
+	url = https://github.com/backupsonbackupsrobby-cyber/atmospheric-truth-layer.git
+[submodule "truth/Witnessing_state_layer"]
+	path = truth/Witnessing_state_layer
+	url = https://github.com/backupsonbackupsrobby-cyber/Witnessing_state_layer.git
+[submodule "mission/FUTURE"]
+	path = mission/FUTURE
+	url = https://github.com/AiTenetAgency101/FUTURE.git
+[submodule "personal/Hello-World"]
+	path = personal/Hello-World
+	url = https://github.com/backupsonbackupsrobby-cyber/Hello-World.git
+[submodule "core/MagnaCarta"]
+	path = core/MagnaCarta
+	url = https://github.com/AiTenetAgency101/AiAgency.101-MagnaCarta.git
+[submodule "external/zhangxuefeng-skill"]
+	path = external/zhangxuefeng-skill
+	url = https://github.com/alchaincyf/zhangxuefeng-skill.git
+[submodule "external/nRF-Logger-API"]
+	path = external/nRF-Logger-API
+	url = https://github.com/nordicsemi/nRF-Logger-API.git
