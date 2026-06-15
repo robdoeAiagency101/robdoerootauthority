@@ -1,0 +1,17 @@
+﻿INCIDENT MANIFEST
+Name: auth_outage
+Severity: high
+Timestamp: 20260607_211336
+Engine: AiFACTORi E14
+Operator: RobDoeAi
+
+Status: OPEN
+Summary:
+- Describe what happened
+
+Evidence:
+- List files, screenshots, logs
+
+Next Actions:
+- Step 1
+- Step 2

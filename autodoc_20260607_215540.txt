@@ -1,0 +1,92 @@
+﻿AiFACTORi AUTODOC REPORT
+Timestamp: 20260607_215540
+--------------------------------
+SYSTEM HEALTH
+
+Handles  NPM(K)    PM(K)      WS(K)     CPU(s)     Id  SI ProcessName                                                                                                                       
+-------  ------    -----      -----     ------     --  -- -----------                                                                                                                       
+   9164       0       52        160   6,901.88      4   0 System                                                                                                                            
+    430      51  1318900    1250064   3,304.48   2584   2 mscopilot                                                                                                                         
+    584      27   148728     156072   3,119.61  34920   2 Docker Desktop                                                                                                                    
+   1391     260   335432     245116   2,954.91   6700   0 MsMpEng                                                                                                                           
+    430      37   281356      29436   2,850.77  14760   2 msedge                                                                                                                            
+
+
+
+
+DriveLetter FriendlyName FileSystemType DriveType HealthStatus OperationalStatus SizeRemaining      Size
+----------- ------------ -------------- --------- ------------ ----------------- -------------      ----
+                         FAT32          Fixed     Healthy      OK                     23.12 MB     96 MB
+C                        NTFS           Fixed     Healthy      OK                    283.72 GB 475.73 GB
+                         NTFS           Fixed     Healthy      OK                     85.05 MB   1.09 GB
+
+
+
+--------------------------------
+NETWORK
+Connectivity: True
+
+Name                                           Type   TTL   Section    IPAddress                                
+----                                           ----   ---   -------    ---------                                
+google.com                                     AAAA   188   Answer     2404:6800:4006:803::200e                 
+google.com                                     A      231   Answer     142.251.222.238                          
+
+
+
+--------------------------------
+GIT STATUS
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	CertWare/
+	DAVEtools/
+	Kodiak/
+	MCT-Plugins/
+	NASA-Space-Weather-Media-Viewer/
+	OpenMDAO-Framework/
+	OpenSPIFe/
+	OpenVSP/
+	StereoPipeline/
+	T-MATS/
+	TTECTrA/
+	VADER/
+	WellClear/
+	World-Wind-Java/
+	auth_outage_20260607_211336.manifest.txt
+	auth_outage_20260607_211648.manifest.txt
+	autodoc/
+	autoheal_snapshot_20260607_215430.txt
+	cash/
+	code.nasa.gov_legacy/
+	data.nasa.gov/
+	digital-strategy/
+	eefs/
+	github-latest-commits-widget/
+	osal/
+	snapshot_20260607_214945.txt
+	visionworkbench/
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+--------------------------------
+RECENT SYSTEM EVENTS
+
+   Index Time          EntryType   Source                 InstanceID Message                                                                                                                
+   ----- ----          ---------   ------                 ---------- -------                                                                                                                
+   47123 Jun 07 21:36  Information Service Control M...   1073748864 The start type of the Background Intelligent Transfer Service service was changed from auto start to demand start.     
+   47122 Jun 07 21:35  Information Service Control M...   1073748864 The start type of the Windows Modules Installer service was changed from auto start to demand start.                   
+   47121 Jun 07 21:35  Information Microsoft-Windows...           16 The description for Event ID '16' in Source 'Microsoft-Windows-Kernel-General' cannot be found.  The local computer ...
+   47120 Jun 07 21:35  Information Microsoft-Windows...           16 The description for Event ID '16' in Source 'Microsoft-Windows-Kernel-General' cannot be found.  The local computer ...
+   47119 Jun 07 21:32  Information Microsoft-Windows...           44 Windows Update started downloading an update.                                                                          
+   47118 Jun 07 21:32  Information Service Control M...   1073748864 The start type of the Windows Modules Installer service was changed from demand start to auto start.                   
+   47117 Jun 07 21:27  Information Microsoft-Windows...           16 The description for Event ID '16' in Source 'Microsoft-Windows-Kernel-General' cannot be found.  The local computer ...
+   47116 Jun 07 21:27  Information Microsoft-Windows...           16 The description for Event ID '16' in Source 'Microsoft-Windows-Kernel-General' cannot be found.  The local computer ...
+   47115 Jun 07 21:27  Information Microsoft-Windows...           16 The description for Event ID '16' in Source 'Microsoft-Windows-Kernel-General' cannot be found.  The local computer ...
+   47114 Jun 07 21:26  Information Service Control M...   1073748864 The start type of the Background Intelligent Transfer Service service was changed from demand start to auto start.     
+
+
+
+--------------------------------

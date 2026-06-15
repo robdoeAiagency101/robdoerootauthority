@@ -1,0 +1,8 @@
+﻿<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+<style>
+  .p { fill:#00f0ff; animation:pulse 2s infinite; }
+  @keyframes pulse { 0%{r:10;opacity:.3;}50%{r:25;opacity:1;}100%{r:10;opacity:.3;} }
+</style>
+<rect width="200" height="200" fill="#050510"/>
+<circle class="p" cx="100" cy="100" r="10"/>
+</svg>
