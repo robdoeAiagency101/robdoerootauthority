@@ -1,0 +1,21 @@
+{
+    "ArtifactName":  "COMMAND_ARTIFACT",
+    "ArtifactType":  "DataObject",
+    "Origin":  "COMMAND_OUTPUT",
+    "Timestamp":  "2026-05-16T22:39:27.2337064+10:00",
+    "BinaryPattern":  {
+                          "Bits":  "010000010110100101000111011010000110111101110011011101000100001001101111011101000000110100001010",
+                          "Encoding":  "UTF8",
+                          "Length":  12
+                      },
+    "Interpretation":  {
+                           "Schema":  "UTF8",
+                           "Meaning":  "schema-defined"
+                       },
+    "Integrity":  {
+                      "Hash":  "d26aae25ddee178f49c5372c0eccbe253d68a84c9d770a769bd78715427b2886e6b29bf4a762037c141800814cb7836c07180ded8a72bfb8377e88122d681d0c",
+                      "Verified":  true,
+                      "Algorithm":  "SHA512"
+                  },
+    "Truth":  "Structured data produced by computation; truth = reproducibility + integrity."
+}

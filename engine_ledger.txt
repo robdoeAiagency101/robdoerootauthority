@@ -1,0 +1,15 @@
+﻿EA ENGINE LEDGER
+----------------
+Timestamp: 2026-05-16 22:08:01
+Machine: AIGHOSTBOT
+User: slick
+
+OS Version: 10.0.22631
+PowerShell: 5.1.22621.6133
+CPU: Intel(R) Core(TM) i5-8365U CPU @ 1.60GHz
+RAM (GB): 19.78
+
+ExecutionPolicy: RemoteSigned
+IntegrityLevel: Mandatory Label\High Mandatory Level                          Label            S-1-16-12288                                                                                                                                                                
+
+SHA512: D4BF361BBC2C1300B740E15C2972DCD0DDD32E0EDED2F43AF60D0C4649BCD7CBABD1702C4EE86913329B9EFD9746050D7A18D3DABFB831A679DD3C585E326AD3
