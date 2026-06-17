@@ -4,9 +4,14 @@
     "CertificateID":  "ENTROPOLY-R1-ROOT-AUTHORITY-0x7F",
     "EcosystemLabel":  "ROB_DOE_GLOBAL_LATTICE_TRUE_FLOW",
     "WitnessNetwork":  "aiagency101.xyo",
-    "EngineFuelSeed":  "https://github.com",
-    "Timestamp":  "2026-06-17T17:20:37Z",
+    "EngineFuelSeed":  "https://github.com/AiAgency-Lab/T800-AiGC.git",
+    "Timestamp":  "2026-06-17T07:25:00Z",
     "StateToken":  "ONE_UNIT_ARTIFACT_THETA",
+    "LatticeMappings":  [
+                            "FORBES_ASSET",
+                            "ROBDOEAI-CORE",
+                            "internal"
+                        ],
     "PrimaryDomain":  "robdoe.com",
     "ActiveNodes":  [
                         "C:\\AiFACTORi",
