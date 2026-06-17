@@ -2,10 +2,10 @@
     "MasterRoot":  "https://github.com",
     "SyncToken":  "KUMOTO_LATTICE_MAX_AFFECT_0x99",
     "CertificateID":  "ENTROPOLY-R1-ROOT-AUTHORITY-0x7F",
-    "EcosystemLabel":  "ROB_DOE_GLOBAL_LATTICE",
+    "EcosystemLabel":  "ROB_DOE_GLOBAL_LATTICE_TRUE_FLOW",
     "WitnessNetwork":  "aiagency101.xyo",
     "EngineFuelSeed":  "https://github.com",
-    "Timestamp":  "2026-06-17T17:16:36Z",
+    "Timestamp":  "2026-06-17T17:20:37Z",
     "StateToken":  "ONE_UNIT_ARTIFACT_THETA",
     "PrimaryDomain":  "robdoe.com",
     "ActiveNodes":  [
