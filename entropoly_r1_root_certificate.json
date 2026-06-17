@@ -1,0 +1,103 @@
+﻿{
+    "MasterRoot":  "https://github.com",
+    "SyncToken":  "KUMOTO_LATTICE_MAX_AFFECT_0x99",
+    "CertificateID":  "ENTROPOLY-R1-ROOT-AUTHORITY-0x7F",
+    "EcosystemLabel":  "ROB_DOE_GLOBAL_LATTICE",
+    "WitnessNetwork":  "aiagency101.xyo",
+    "EngineFuelSeed":  "https://github.com",
+    "Timestamp":  "2026-06-17T17:16:36Z",
+    "StateToken":  "ONE_UNIT_ARTIFACT_THETA",
+    "PrimaryDomain":  "robdoe.com",
+    "ActiveNodes":  [
+                        "C:\\AiFACTORi",
+                        "C:\\COM",
+                        "C:\\robdoerootauthority",
+                        "C:\\REGISTERY_AiAgency101_robdoe_global"
+                    ],
+    "NestedSubModels":  [
+                            {
+                                "ID":  "M01_ROOT_AUTH",
+                                "Desc":  "👑 Global Mesh Registry Truth IDs Engine"
+                            },
+                            {
+                                "ID":  "M02_ENV_AMB",
+                                "Desc":  "🛡️ Ambitus Boundary Tracking Matrix"
+                            },
+                            {
+                                "ID":  "M03_ENTRO_MON",
+                                "Desc":  "🔥 Real-time Entropy Field Volatility Scanner"
+                            },
+                            {
+                                "ID":  "M04_COLLAPSE",
+                                "Desc":  "⚡ Primary State Collapse Vector Configuration"
+                            },
+                            {
+                                "ID":  "M05_LOSS_EVAL",
+                                "Desc":  "📉 Dynamic Loss Function Multi-Filter Array"
+                            },
+                            {
+                                "ID":  "M06_WITNESS_A",
+                                "Desc":  "🔑 Layer-1 Blueprint Serializer State Lock"
+                            },
+                            {
+                                "ID":  "M07_WITNESS_W",
+                                "Desc":  "🔱 Layer-2 High-Order Multi-Witness Registry"
+                            },
+                            {
+                                "ID":  "M08_KUMOTO_CK",
+                                "Desc":  "💮 Kumoto Phase Synchronization Clock Array"
+                            },
+                            {
+                                "ID":  "M09_FIXED_ATT",
+                                "Desc":  "🪐 Fixed Attractor Trapping Range Controller"
+                            },
+                            {
+                                "ID":  "M10_META_ENTR",
+                                "Desc":  "📊 Meta-Entropy Tracker Log Evaluator Array"
+                            },
+                            {
+                                "ID":  "M11_FACT_ORCH",
+                                "Desc":  "🏭 C:\\AiFACTORi Thread Mapping (T800 Engine Active)"
+                            },
+                            {
+                                "ID":  "M12_COM_STREM",
+                                "Desc":  "📡 C:\\COM Communications Pipeline Stream"
+                            },
+                            {
+                                "ID":  "M13_GIT_SYNCX",
+                                "Desc":  "🔄 Global Registry Overwrite Synchronization Engine"
+                            },
+                            {
+                                "ID":  "M14_STATE_CRY",
+                                "Desc":  "💎 State Crystallization Engine \u0026 Node Telemetry"
+                            },
+                            {
+                                "ID":  "M15_DATA_HYDR",
+                                "Desc":  "📥 Deep Nested Manifest Hydration Core"
+                            },
+                            {
+                                "ID":  "M16_MEM_ISOL",
+                                "Desc":  "🧱 Non-Sentient Workspace Memory Protection Ring"
+                            },
+                            {
+                                "ID":  "M17_GAS_METR",
+                                "Desc":  "⛽ Fuel-In/Fuel-Out Activity Allocator (XL1 Gas)"
+                            },
+                            {
+                                "ID":  "M18_SYS_STAK",
+                                "Desc":  "🪙 Automated Protocol Asset \u0026 Witness Validator"
+                            },
+                            {
+                                "ID":  "M19_FAIL_SAFE",
+                                "Desc":  "🚨 Recursive Paradox Interceptor Frame Control"
+                            },
+                            {
+                                "ID":  "M20_LEDGER_W",
+                                "Desc":  "📝 Physical Ledger File Local Cache Synchronizer"
+                            },
+                            {
+                                "ID":  "M21_EXEC_CORE",
+                                "Desc":  "🎛️ Master Pipeline Multi-Thread Loop Overseer"
+                            }
+                        ]
+}
