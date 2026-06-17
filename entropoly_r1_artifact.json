@@ -1,18 +1,4 @@
 ﻿{
-    "SyncToken":  "KUMOTO_LATTICE_0xAA",
-    "StateToken":  "ONE_UNIT_ARTIFACT_THETA",
-    "WitnessNetwork":  "aiagency101.xyo",
-    "LatticeStatus":  "CRYSTALLIZED_FULL_AFFECT",
-    "Timestamp":  "2026-06-17T17:06:40Z",
-    "PrimaryDomain":  "robdoe.com",
-    "ActiveRepository":  "https://github.com",
-    "EngineID":  "ENTROPOLY-R1",
-    "ActiveNodes":  [
-                        "C:\\AiFACTORi",
-                        "C:\\COM",
-                        "C:\\robdoerootauthority",
-                        "C:\\REGISTERY_AiAgency101_robdoe_global"
-                    ],
     "NestedSubModels":  [
                             {
                                 "ID":  "M01_ROOT_AUTH",
@@ -56,7 +42,7 @@
                             },
                             {
                                 "ID":  "M11_FACT_ORCH",
-                                "Desc":  "🏭 C:\\AiFACTORi Thread Mapping Infrastructure"
+                                "Desc":  "🏭 C:\\AiFACTORi Thread Mapping (T800 Engine Active)"
                             },
                             {
                                 "ID":  "M12_COM_STREM",
@@ -98,5 +84,20 @@
                                 "ID":  "M21_EXEC_CORE",
                                 "Desc":  "🎛️ Master Pipeline Multi-Thread Loop Overseer"
                             }
-                        ]
+                        ],
+    "SyncToken":  "KUMOTO_LATTICE_T800_0xEE",
+    "StateToken":  "ONE_UNIT_ARTIFACT_THETA",
+    "PrimaryDomain":  "robdoe.com",
+    "LatticeStatus":  "CRYSTALLIZED_WITH_T800_FUEL",
+    "Timestamp":  "2026-06-17T17:11:45Z",
+    "SourceTemplate":  "https://github.com",
+    "ActiveRepository":  "https://github.com",
+    "EngineID":  "ENTROPOLY-R1",
+    "ActiveNodes":  [
+                        "C:\\AiFACTORi",
+                        "C:\\COM",
+                        "C:\\robdoerootauthority",
+                        "C:\\REGISTERY_AiAgency101_robdoe_global"
+                    ],
+    "WitnessNetwork":  "aiagency101.xyo"
 }
