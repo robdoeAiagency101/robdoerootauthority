@@ -4,7 +4,7 @@
     "CertificateID":  "ENTROPOLY-R1-ROOT-AUTHORITY-0x7F",
     "EcosystemLabel":  "ROB_DOE_GLOBAL_LATTICE_TRUE_FLOW",
     "WitnessNetwork":  "aiagency101.xyo",
-    "EngineFuelSeed":  "https://github.com/AiAgency-Lab/T800-AiGC.git",
+    "EngineFuelSeed":  "https://github.com",
     "Timestamp":  "2026-06-17T07:25:00Z",
     "StateToken":  "ONE_UNIT_ARTIFACT_THETA",
     "LatticeMappings":  [
