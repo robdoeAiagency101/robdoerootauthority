@@ -1,0 +1,17 @@
+{
+  "version": "1.0",
+  "servers": [
+    {
+      "name": "local-exec",
+      "type": "executable",
+      "description": "Local execution context for isolated operations",
+      "enabled": true
+    },
+    {
+      "name": "esp32-firmware",
+      "type": "build-pipeline",
+      "description": "ESP32 Hyper-V isolated firmware builder",
+      "enabled": true
+    }
+  ]
+}
