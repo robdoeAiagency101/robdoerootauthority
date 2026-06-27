@@ -1,8 +1,9 @@
 ﻿{
-    "Observer":  "robdoe.Os HyperV Core v1.0.0",
-    "AttestationTime":  "2026-06-27T20:51:15Z",
+    "Observer":  "robdoe.Os Wealth Guard v3.1.0",
+    "AttestationTime":  "2026-06-28T06:58:26.872+10:00",
     "FluxCalculated":  0.031868,
-    "SystemStateHash":  "nmo68GI2xpOcTFMuIzw9WVMsn7sfRy74O+dO2/IQ4QA=",
-    "OnChainWitness":  "aiagency101.xyo",
-    "WebAnchor":  "robdoe.com"
+    "SystemStateHash":  "jqGW/4vltLsSbxKOK/8rJrrjau4uTaVlMvP6MXBK+Iw=",
+    "OnChainWitness":  "AiAgency101.xyo",
+    "WebAnchor":  "robdoe.com",
+    "FranchiseCode":  "CCA 2010 Insulated"
 }
