@@ -1,0 +1,21 @@
+﻿======================================================================
+🔒 ROBDOE.OS IDENTITY MANIFEST ATTESTATION SEALS
+======================================================================
+ID PROOF ENTRY -> 0xa35DC6DCeE888eb448787229156af982C4E3A497
+ID PROOF ENTRY -> bc1qug0s3xa2g5kn3aavvthytrynfyl0p8apxart7v
+ID PROOF ENTRY -> 8QxXqkXpwoq2mPLr4NYVTBWxZkMtaYYu3ANCvZUU3uHh
+ID PROOF ENTRY -> TG8UH799DmVHcMbx8MVWKYMwySC5eYLsqd
+ID PROOF ENTRY -> 0x84CA4aFC3F395ebc0b519680B546Cd604C9c2018
+ID PROOF ENTRY -> 0x03B027Db5aFcF9C703fd5d7467E5FE6f7387Cffc
+ID PROOF ENTRY -> 0xe5e86517f1471718aEf35A4C2bE280B110c2D1D9
+ID PROOF ENTRY -> 0x16d5B2258e38414E934F4606818A5817CA355c91
+ID PROOF ENTRY -> 0xb7712d970Fe30a0d7fb2bFe0DF16bF54946AF860
+
+
+Epoch          HostNode   StateHash                                                        File_Path                                            
+-----          --------   ---------                                                        ---------                                            
+20260628081613 AIGHOSTBOT 8DA5E93BBC5A4D500B0D57FEA754A21F69734504E9B107266155BF808E4789E5 C:\robdoe\ledger\epoch_20260628081613.json           
+20260628081808 AIGHOSTBOT 17A674F4593C618E543F74BBEC2C86DB0BD6AA48E20D00FA028EC73082110EC7 C:\robdoe\attestation\attestation_20260628081808.json
+
+
+
