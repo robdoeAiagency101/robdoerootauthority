@@ -1,0 +1,6 @@
+/*
+!.gitignore
+!merged.bin
+!telemetry_render.min.js
+ !GhostESP/magnetic_engine.py
+ !GhostESP/ON_CHAIN_WITNESS_RECEIPT.json
