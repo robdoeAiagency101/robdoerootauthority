@@ -1,0 +1,4 @@
+﻿## COMPILATION SUMMARY
+Port: COM10
+Target: ESP32-C6
+Status: LATCHED
