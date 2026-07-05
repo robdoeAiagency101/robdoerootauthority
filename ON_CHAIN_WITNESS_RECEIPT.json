@@ -1,27 +1,21 @@
 {
-    "timestamp": "2026-07-04T12:17:07.554997Z",
-    "ledger": "aiagency101.xyo",
-    "sovereign_nodes": {
-        "CELL_05_FIRE_EARTH": "0x84CA4aFC3F395ebc0b519680B546Cd604C9c2018",
-        "CELL_06_AIR_TENSOR": "0xabf4e0A237E4632b1740fdBe118162aA33b4F5aD",
-        "CUSTODY_LITE_NODE": "0x1AE2AF702063d304F8EBAC2153c91D79c62E381c"
-    },
-    "biomarkers": {
-        "heart_rate_bpm": 60.0,
-        "hrv_ms": 65.0,
-        "stress_score": 25.0,
-        "sleep_quality_pct": 88.0,
-        "sleep_duration_hr": 7.5,
-        "energy_level": 82.0,
-        "mental_clarity": 90.0,
-        "cortisol_ng_ml": 12.5,
-        "glucose_mg_dl": 95.0,
-        "blood_oxygen_pct": 99.0,
-        "body_temp_c": 36.8
-    },
-    "matrix_invariants": {
-        "zha_trace_tesla": 0.10000000000000003,
-        "combined_readiness_pct": 81.69999999999999
-    },
-    "mana_flow_status": "T\u016aTONU // FIXED"
+    "witnesses":  [
+                      {
+                          "status":  "Self-custody wallet, digital assets are secured by you",
+                          "address":  "0x84CA4aFC3F395ebc0b519680B546Cd604C9c2018"
+                      },
+                      {
+                          "status":  "Self-custody wallet, digital assets are secured by you",
+                          "address":  "0xabf4e0A237E4632b1740fdBe118162aA33b4F5aD"
+                      },
+                      {
+                          "status":  "Custody Lite Wallet",
+                          "address":  "0x1AE2AF702063d304F8EBAC2153c91D79c62E381c",
+                          "resolution":  "aiagency101.xyo"
+                      }
+                  ],
+    "timestamp":  "2026-07-05T17:39:39Z",
+    "node":  "espVmark.robdoe.32",
+    "cycle_id":  "7f4a9e2c-8d3b-47e1-9f6c-2a5d8e1b4f7a",
+    "evidence_act":  "s146 Evidence Act 1995 (Cth)"
 }

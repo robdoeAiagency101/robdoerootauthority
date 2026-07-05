@@ -1,0 +1,24 @@
+{
+    "physics_locks":  {
+                          "rere":  0.15,
+                          "aha":  0.075,
+                          "suu":  0.05
+                      },
+    "chrono_anchor":  {
+                          "timestamp_iso":  "2026-07-05T18:09:26.655Z",
+                          "epoch_seconds":  1783274966
+                      },
+    "system_envelope":  {
+                            "hardware_id":  "/5NQYMW2/CNWSC0003L06JF/",
+                            "tpm_manufacturer":  1398033696
+                        },
+    "node_metadata":  {
+                          "active_cycle":  "7f4a9e2c-8d3b-47e1-9f6c-2a5d8e1b4f7a",
+                          "target_identity":  "espVmark.robdoe.32"
+                      },
+    "network_witness":  [
+                            "0x84CA4aFC3F395ebc0b519680B546Cd604C9c2018",
+                            "0xabf4e0A237E4632b1740fdBe118162aA33b4F5aD",
+                            "0x1AE2AF702063d304F8EBAC2153c91D79c62E381c"
+                        ]
+}
