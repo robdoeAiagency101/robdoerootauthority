@@ -20,5 +20,11 @@
                             "0x84CA4aFC3F395ebc0b519680B546Cd604C9c2018",
                             "0xabf4e0A237E4632b1740fdBe118162aA33b4F5aD",
                             "0x1AE2AF702063d304F8EBAC2153c91D79c62E381c"
-                        ]
+                        ],
+    "witness_trifecta":  [
+                             "0x84CA4aFC3F395ebc0b519680B546Cd604C9c2018",
+                             "0xabf4e0A237E4632b1740fdBe118162aA33b4F5aD",
+                             "0x1AE2AF702063d304F8EBAC2153c91D79c62E381c"
+                         ],
+    "identity_resolved":  "aiagency101.xyo"
 }

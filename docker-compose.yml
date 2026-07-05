@@ -148,7 +148,6 @@ services:
     restart: unless-stopped
 
   # PostgreSQL (Tile Storage & Audit Log)
-  postgres:
     image: postgres:16-alpine
     container_name: postgres
     environment:
@@ -170,7 +169,6 @@ services:
     restart: unless-stopped
 
   # Redis (Consensus Cache & K-Value Tracking)
-  redis:
     image: redis:7-alpine
     container_name: redis
     command: redis-server --appendonly yes
@@ -188,7 +186,6 @@ services:
     restart: unless-stopped
 
   # Prometheus (Metrics)
-  prometheus:
     image: prom/prometheus:latest
     container_name: prometheus
     ports:
@@ -201,7 +198,6 @@ services:
     restart: unless-stopped
 
   # Grafana (Visualization)
-  grafana:
     image: grafana/grafana:latest
     container_name: grafana
     environment:
@@ -217,15 +213,32 @@ services:
       - prometheus
     restart: unless-stopped
 
-volumes:
-  postgres_data:
-  redis_data:
-  prometheus_data:
-  grafana_data:
+    image: neo4j:community
+    container_name: atl-neo4j-graph
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+      - "7473:7473"
+    environment:
+      - NEO4J_AUTH=neo4j/password
+    networks:
+      - atmospheric-mesh
+    volumes:
+      - neo4j_data:/data
 
 networks:
   atmospheric-mesh:
     driver: bridge
-    ipam:
-      config:
-        - subnet: 172.25.0.0/16
+
+volumes:
+  postgres_data:
+  postgres-data:
+  redis_data:
+  redis-data:
+  neo4j_data:
+  neo4j-data:
+  prometheus_data:
+  prometheus-data:
+  grafana_data:
+  grafana-data:
+  logs-pv:
