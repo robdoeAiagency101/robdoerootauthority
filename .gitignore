@@ -1,0 +1,4 @@
+pip/cache/
+*.pyc
+__pycache__/
+derived_data/jubilee_telemetry_matrix.csv

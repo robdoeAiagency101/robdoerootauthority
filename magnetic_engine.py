@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 """
 ENGINE v1.0.0 - MAGNETIC FIELD MATHEMATICS INTEGRATION
 ZHA + TRON + EHF with Magnetic Field Synchronization
@@ -33,8 +33,8 @@ class MAGNETIC_FIELD_ENGINE:
         zha_matrix = np.cos(np.abs(idx[:, None] - idx) / wavelength) * self.device_magnetic_field
         np.fill_diagonal(zha_matrix, self.device_magnetic_field)
         trace_zha = np.trace(zha_matrix)
-        print(f"   ✅ ZHA Devices     : {self.zha_devices}")
-        print(f"   ✅ Matrix Trace    : {trace_zha:.6f} T")
+        print(f"   ? ZHA Devices     : {self.zha_devices}")
+        print(f"   ? Matrix Trace    : {trace_zha:.6f} T")
         return float(trace_zha)
    
     def calculate_tron_magnetic_consensus(self):
@@ -43,8 +43,8 @@ class MAGNETIC_FIELD_ENGINE:
         validator_vectors = np.array([[np.cos(np.radians(a)), np.sin(np.radians(a))] for a in validator_angles])
         consensus_vector = np.sum(validator_vectors, axis=0)
         consensus_magnitude = np.linalg.norm(consensus_vector)
-        print(f"   ✅ TRON Validators : {self.tron_validators}")
-        print(f"   ✅ Alignment Strength: {consensus_magnitude:.4f}")
+        print(f"   ? TRON Validators : {self.tron_validators}")
+        print(f"   ? Alignment Strength: {consensus_magnitude:.4f}")
         return float(consensus_magnitude)
    
     def calculate_ehf_biomarker_resonance(self):
@@ -56,8 +56,8 @@ class MAGNETIC_FIELD_ENGINE:
         }
         frequencies = np.array(list(biomarkers.values()))
         optimal_freq = np.mean(frequencies)
-        print(f"   ✅ Biomarkers      : {self.ehf_biomarkers}")
-        print(f"   ✅ Optimal Frequency: {optimal_freq:.4f} Hz")
+        print(f"   ? Biomarkers      : {self.ehf_biomarkers}")
+        print(f"   ? Optimal Frequency: {optimal_freq:.4f} Hz")
         return float(optimal_freq)
    
     def unified_magnetic_field_equation(self):
@@ -69,7 +69,7 @@ class MAGNETIC_FIELD_ENGINE:
         
         # Complete Closed-Loop Symbolic Alignment
         unified_eq = B_zha * sp.sin(omega * t) + B_tron * sp.cos(omega * t)
-        print(f"   ✅ Closed Trajectory Sealed: B(t) = {unified_eq}")
+        print(f"   ? Closed Trajectory Sealed: B(t) = {unified_eq}")
         return str(unified_eq)
 
 if __name__ == '__main__':
