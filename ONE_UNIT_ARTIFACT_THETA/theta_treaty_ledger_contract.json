@@ -1,0 +1,15 @@
+{
+  "contract_type": "theta_treaty_ledger_contract",
+  "system": "ONE_UNIT",
+  "provider": "Theta EdgeCloud",
+  "version": "v1",
+  "timestamp": "2026-06-16T05:06:00Z",
+
+  "identity_anchor_ref": "ONE_UNIT_ARTIFACT_THETA/identity_anchor/identity-anchor.json",
+  "treaty_ref": "ONE_UNIT_ARTIFACT_THETA/treaty/treaty.json",
+  "ledger_binding_ref": "ONE_UNIT_ARTIFACT_THETA/ledger_explorer/theta-ledger-explorer.json",
+  "energy_spec_ref": "ONE_UNIT_ARTIFACT_THETA/energy/theta-energy-spec.json",
+  "hybrid_ref": "ONE_UNIT_ARTIFACT_THETA/treaty_ledger_hybrid/treaty-ledger-hybrid.json",
+
+  "notes": "This is the minimal safe contract block. It only references existing artifacts and cannot break the system."
+}

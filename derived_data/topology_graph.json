@@ -1,0 +1,81 @@
+{
+    "directed": true,
+    "multigraph": false,
+    "graph": {},
+    "nodes": [
+        {
+            "id": "Operator",
+            "type": "Human"
+        },
+        {
+            "id": "Engine",
+            "resolution": "aiagency101.xyo"
+        },
+        {
+            "url": "robdoe.com",
+            "type": "Primary Governance NFT",
+            "id": "Domain1"
+        },
+        {
+            "url": "roberdoe.pw",
+            "type": "Secondary Governance NFT",
+            "id": "Domain2"
+        },
+        {
+            "address": "0x84CA4aFC3F395ebc0b519680B546Cd604C9c2018",
+            "role": "CELL 05 FIRE/EARTH",
+            "id": "WalletC5"
+        },
+        {
+            "address": "0xabf4e0A237E4632b1740fdBe118162aA33b4F5aD",
+            "role": "CELL 06 AIR TENSOR",
+            "id": "WalletC6"
+        },
+        {
+            "address": "0x1AE2AF702063d304F8EBAC2153c91D79c62E381c",
+            "role": "CUSTODY LITE NODE",
+            "id": "WalletCL"
+        },
+        {
+            "id": "Hardware",
+            "port": "COM10"
+        }
+    ],
+    "edges": [
+        {
+            "relationship": "COMMANDS",
+            "source": "Operator",
+            "target": "Engine"
+        },
+        {
+            "relationship": "RESOLVES_TO",
+            "source": "Engine",
+            "target": "Domain1"
+        },
+        {
+            "relationship": "RESOLVES_TO",
+            "source": "Engine",
+            "target": "Domain2"
+        },
+        {
+            "relationship": "SECURED_BY",
+            "source": "Engine",
+            "target": "WalletC5"
+        },
+        {
+            "relationship": "SECURED_BY",
+            "source": "Engine",
+            "target": "WalletC6"
+        },
+        {
+            "relationship": "SECURED_BY",
+            "source": "Engine",
+            "target": "WalletCL"
+        },
+        {
+            "relationship": "ATTESTS_ON",
+            "source": "Engine",
+            "target": "Hardware"
+        }
+    ]
+}
