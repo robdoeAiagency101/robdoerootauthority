@@ -89,3 +89,6 @@ process.on('SIGINT', async () => {
     process.exit(0);
 });
 
+
+// Keep-Alive Hold: Prevents the event loop from collapsing between the 12s hardware refresh frames
+setInterval(() => {}, 1000);
