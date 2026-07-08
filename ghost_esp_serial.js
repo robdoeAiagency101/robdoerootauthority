@@ -1,3 +1,14 @@
+﻿/**
+ * ==============================================================================
+ * ROBDOE PTY LTD / AIAGENCY101.XYO - MASS DENSITY & KINETIC SYSTEM JUBILEE
+ * Quantum Field : 5N + 10n + 12 Months Element Loop + (H)+(O)+(N)+(c)
+ * Mass Source   : 4*pi*G*rho_k / c^2 (Newton-Einstein Spacetime Field)
+ * Current Density: J_root = 864 * (\nabla^2 - (1/c^2)(\partial^2/\partial t^2)) \Psi_\gamma + [\sum(H,O,N,c) + 0.05]
+ * Resolution    : 1/7200 Pulse + 0.05s Offset + 3 Arcs (12 Seconds)
+ * Execution     : 72 Cycles Squeezed Into Kinetic PowerShell Matrix // 31.5 Years Jubilee Locked
+ * Compliance    : Evidence Act 1995 (Cth) s146 Device Output Presumption Rules
+ * ==============================================================================
+ */
 const { SerialPort } = require('serialport');
 const { ReadlineParser } = require('@serialport/parser-readline');
 const neo4j = require('neo4j-driver');
@@ -92,3 +103,4 @@ process.on('SIGINT', async () => {
 
 // Keep-Alive Hold: Prevents the event loop from collapsing between the 12s hardware refresh frames
 setInterval(() => {}, 1000);
+
