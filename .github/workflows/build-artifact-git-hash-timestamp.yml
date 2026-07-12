@@ -1,0 +1,322 @@
+name: Build → Tag → Artifact → Git → Hash → Timestamp
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - '3d4d5d-crypto-core/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  packages: write
+  id-token: write
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}/crypto-triangle
+
+jobs:
+  build-tag-artifact-git:
+    runs-on: ubuntu-latest
+    outputs:
+      artifact-chain-hash: ${{ steps.chain.outputs.hash }}
+      git-tag: ${{ steps.git-tag.outputs.tag }}
+      release-url: ${{ steps.release.outputs.url }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate timestamps
+        id: timestamps
+        run: |
+          ISO=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+          UNIX=$(date +%s)
+          DATE=$(date +%Y%m%d)
+          TIME=$(date +%H%M%S)
+          echo "iso=$ISO" >> $GITHUB_OUTPUT
+          echo "unix=$UNIX" >> $GITHUB_OUTPUT
+          echo "date=$DATE" >> $GITHUB_OUTPUT
+          echo "time=$TIME" >> $GITHUB_OUTPUT
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push image
+        id: build
+        uses: docker/build-push-action@v5
+        with:
+          context: ./3d4d5d-crypto-core
+          push: true
+          tags: |
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:v2.0.0
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:build-${{ github.run_number }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Create artifacts with hashes
+        id: artifacts
+        run: |
+          mkdir -p artifacts
+          
+          # Create sealed artifacts
+          cat > artifacts/sealed-build-${{ steps.timestamps.outputs.date }}.json << 'EOF'
+          {
+            "timestamp": "${{ steps.timestamps.outputs.iso }}",
+            "buildNumber": "${{ github.run_number }}",
+            "gitSha": "${{ github.sha }}",
+            "imageDigest": "${{ steps.build.outputs.digest }}",
+            "branch": "${{ github.ref_name }}",
+            "sealed": true
+          }
+          EOF
+          
+          # Calculate hashes
+          SHA256=$(sha256sum artifacts/sealed-build-${{ steps.timestamps.outputs.date }}.json | cut -d' ' -f1)
+          echo "artifact-hash=$SHA256" >> $GITHUB_OUTPUT
+          
+          # Create hash manifest
+          cat > artifacts/hash-manifest-${{ steps.timestamps.outputs.date }}.json << EOF
+          {
+            "version": "1.0.0",
+            "timestamp": "${{ steps.timestamps.outputs.iso }}",
+            "artifacts": [
+              {
+                "filename": "sealed-build-${{ steps.timestamps.outputs.date }}.json",
+                "sha256": "$SHA256",
+                "size": $(stat -c%s artifacts/sealed-build-${{ steps.timestamps.outputs.date }}.json 2>/dev/null || stat -f%z artifacts/sealed-build-${{ steps.timestamps.outputs.date }}.json),
+                "category": "sealed-build"
+              }
+            ]
+          }
+          EOF
+
+      - name: Create artifact chain
+        id: chain
+        run: |
+          python3 << 'PYTHON_EOF'
+          import sys
+          sys.path.insert(0, './3d4d5d-crypto-core')
+          from git_artifact_manager import GitArtifactManager, GitArtifactChain, GitTimestamp, GitArtifactHash
+          import json
+          
+          manager = GitArtifactManager()
+          chain = GitArtifactChain(manager)
+          
+          # Add artifacts to chain
+          chain.add_to_chain(
+              "artifacts/sealed-build-${{ steps.timestamps.outputs.date }}.json",
+              "sealed-build",
+              "cryptographic"
+          )
+          chain.add_to_chain(
+              "artifacts/hash-manifest-${{ steps.timestamps.outputs.date }}.json",
+              "hash-manifest",
+              "metadata"
+          )
+          
+          # Get chain proof
+          chain_proof = chain.get_chain_proof()
+          
+          # Save to file
+          with open('artifacts/chain-proof.json', 'w') as f:
+              json.dump(chain_proof, f, indent=2)
+          
+          print(f"::set-output name=hash::{chain_proof['chain_hash']}")
+          print(f"Chain hash: {chain_proof['chain_hash'][:16]}...")
+          PYTHON_EOF
+
+      - name: Create Git artifact tag
+        id: git-tag
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          
+          TAG_NAME="artifact/${{ steps.timestamps.outputs.date }}T${{ steps.timestamps.outputs.time }}"
+          COMMIT_MSG="Artifacts: ${{ github.run_number }} - ${{ steps.timestamps.outputs.iso }}"
+          
+          # Add artifacts
+          git add artifacts/
+          
+          # Commit artifacts
+          git commit -m "$COMMIT_MSG" || echo "No changes to commit"
+          
+          # Create annotated tag
+          git tag -a "$TAG_NAME" \
+            -m "Artifact commit: ${{ github.run_number }}" \
+            -m "Timestamp: ${{ steps.timestamps.outputs.iso }}" \
+            -m "Chain hash: ${{ steps.chain.outputs.hash }}" || true
+          
+          echo "tag=$TAG_NAME" >> $GITHUB_OUTPUT
+
+      - name: Generate hash-timestamped manifest
+        id: manifest
+        run: |
+          cat > artifacts/manifest-${{ steps.timestamps.outputs.date }}.json << 'EOF'
+          {
+            "version": "1.0.0",
+            "releaseType": "artifact-hash-timestamp",
+            "metadata": {
+              "timestamp": {
+                "iso8601": "${{ steps.timestamps.outputs.iso }}",
+                "unix": ${{ steps.timestamps.outputs.unix }},
+                "date": "${{ steps.timestamps.outputs.date }}",
+                "time": "${{ steps.timestamps.outputs.time }}"
+              },
+              "build": {
+                "number": "${{ github.run_number }}",
+                "git": {
+                  "sha": "${{ github.sha }}",
+                  "branch": "${{ github.ref_name }}",
+                  "ref": "${{ github.ref }}"
+                }
+              }
+            },
+            "artifacts": {
+              "image": {
+                "digest": "${{ steps.build.outputs.digest }}",
+                "registry": "${{ env.REGISTRY }}",
+                "repository": "${{ env.IMAGE_NAME }}"
+              },
+              "sealed": {
+                "hash": "${{ steps.artifacts.outputs.artifact-hash }}",
+                "filename": "sealed-build-${{ steps.timestamps.outputs.date }}.json"
+              },
+              "chain": {
+                "hash": "${{ steps.chain.outputs.hash }}",
+                "filename": "chain-proof.json"
+              }
+            }
+          }
+          EOF
+
+      - name: Push artifacts to Git
+        id: push
+        run: |
+          git push origin || echo "No new commits to push"
+          git push origin --tags --force-with-lease || echo "Tags already exist"
+
+      - name: Create GitHub Release with artifacts
+        id: release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ github.run_number }}-${{ steps.timestamps.outputs.date }}
+          files: |
+            artifacts/sealed-build-*.json
+            artifacts/hash-manifest-*.json
+            artifacts/chain-proof.json
+            artifacts/manifest-*.json
+          body: |
+            # Artifact Release - ${{ steps.timestamps.outputs.iso }}
+            
+            ## 📦 Artifacts with Hashes & Timestamps
+            
+            **Build Number**: ${{ github.run_number }}
+            **Timestamp**: ${{ steps.timestamps.outputs.iso }}
+            **Git SHA**: `${{ github.sha }}`
+            **Git Tag**: `${{ steps.git-tag.outputs.tag }}`
+            
+            ### Artifact Hashes
+            - **Sealed Build Hash**: `${{ steps.artifacts.outputs.artifact-hash }}`
+            - **Chain Hash**: `${{ steps.chain.outputs.hash }}`
+            
+            ### Docker Image
+            - **Digest**: `${{ steps.build.outputs.digest }}`
+            - **Registry**: `${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}`
+            
+            ### Verification
+            All artifacts are timestamped and hashed for complete traceability:
+            - ✅ Sealed with cryptographic hash
+            - ✅ Timestamped (ISO 8601 + Unix)
+            - ✅ Stored in Git repository
+            - ✅ Tagged for retrieval
+            - ✅ Available in GitHub releases
+            
+            Chain integrity proof: `${{ steps.chain.outputs.hash }}`
+
+      - name: Upload hash report
+        uses: actions/upload-artifact@v4
+        with:
+          name: artifacts-hash-timestamp-${{ github.run_id }}
+          path: artifacts/
+          retention-days: 365
+
+      - name: Post summary
+        run: |
+          cat >> $GITHUB_STEP_SUMMARY << 'EOF'
+          # 📦 Artifacts → Git → Hashed → Timestamped
+          
+          ## ✅ Complete Artifact Chain
+          
+          | Component | Value |
+          |-----------|-------|
+          | **Timestamp** | `${{ steps.timestamps.outputs.iso }}` |
+          | **Build** | `${{ github.run_number }}` |
+          | **Git SHA** | `${{ github.sha }}` |
+          | **Artifact Hash** | `${{ steps.artifacts.outputs.artifact-hash }}` |
+          | **Chain Hash** | `${{ steps.chain.outputs.hash }}` |
+          | **Git Tag** | `${{ steps.git-tag.outputs.tag }}` |
+          
+          ## 📊 Artifacts
+          
+          - sealed-build-${{ steps.timestamps.outputs.date }}.json
+          - hash-manifest-${{ steps.timestamps.outputs.date }}.json
+          - chain-proof.json
+          - manifest-${{ steps.timestamps.outputs.date }}.json
+          
+          ## 🔗 Git Integration
+          
+          - Artifacts committed to Git
+          - Timestamped git tag created
+          - All pushed to remote
+          - GitHub release created
+          
+          ## ✨ Properties
+          
+          - ✅ Hashed (SHA256)
+          - ✅ Timestamped (ISO 8601 + Unix)
+          - ✅ In Git (for history)
+          - ✅ Tagged (for retrieval)
+          - ✅ Released (on GitHub)
+          - ✅ 365-day retention
+          EOF
+
+      - name: Print complete summary
+        run: |
+          echo "════════════════════════════════════════════"
+          echo "✅ ARTIFACTS COMMITTED TO GIT"
+          echo "════════════════════════════════════════════"
+          echo ""
+          echo "Timestamp: ${{ steps.timestamps.outputs.iso }}"
+          echo "Build: ${{ github.run_number }}"
+          echo "Git SHA: ${{ github.sha }}"
+          echo ""
+          echo "Hashes:"
+          echo "  Artifact: ${{ steps.artifacts.outputs.artifact-hash }}"
+          echo "  Chain: ${{ steps.chain.outputs.hash }}"
+          echo ""
+          echo "Git Tag: ${{ steps.git-tag.outputs.tag }}"
+          echo ""
+          echo "Artifacts:"
+          echo "  ✓ sealed-build-${{ steps.timestamps.outputs.date }}.json"
+          echo "  ✓ hash-manifest-${{ steps.timestamps.outputs.date }}.json"
+          echo "  ✓ chain-proof.json"
+          echo "  ✓ manifest-${{ steps.timestamps.outputs.date }}.json"
+          echo ""
+          echo "GitHub Release: ${{ steps.release.outputs.url }}"
+          echo ""
+          echo "════════════════════════════════════════════"

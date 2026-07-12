@@ -1,0 +1,7 @@
+RUN: ENGINE1.newton (answer)
+OUT [ENGINE1.newton]: 
+RUN: ENGINE2.tesla (classify)
+OUT [ENGINE2.tesla]: 
+RUN: ENGINE3.einstein (evaluate)
+OUT [ENGINE3.einstein]: 
+FINAL: 

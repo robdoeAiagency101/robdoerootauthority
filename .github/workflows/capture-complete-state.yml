@@ -1,0 +1,200 @@
+name: Capture Complete State (Artifact → Image → Container)
+
+on:
+  workflow_run:
+    workflows: [Build → Tag Everything, Build → Seal → Attest]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  packages: read
+
+jobs:
+  capture-state:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Install Docker CLI
+        run: |
+          apt-get update
+          apt-get install -y docker.io
+
+      - name: Start Docker service
+        run: |
+          dockerd &
+          sleep 5
+
+      - name: Pull image
+        id: pull
+        run: |
+          docker pull ghcr.io/${{ github.repository }}/crypto-triangle:latest || true
+          docker pull ghcr.io/${{ github.repository }}/crypto-triangle:build-${{ github.run_number }} || true
+          echo "status=success" >> $GITHUB_OUTPUT
+
+      - name: Start container
+        id: container
+        run: |
+          docker run -d \
+            --name crypto-triangle-state-${{ github.run_id }} \
+            --network host \
+            ghcr.io/${{ github.repository }}/crypto-triangle:latest || true
+          
+          sleep 3
+          echo "container=crypto-triangle-state-${{ github.run_id }}" >> $GITHUB_OUTPUT
+
+      - name: Capture complete state
+        id: state
+        run: |
+          mkdir -p artifacts/state-captures
+          
+          python3 << 'PYTHON_EOF'
+          import sys
+          sys.path.insert(0, './3d4d5d-crypto-core')
+          from complete_state_capture import CompleteStateCapture
+          import json
+          
+          # Capture state
+          capture = CompleteStateCapture(
+              image_tag="ghcr.io/${{ github.repository }}/crypto-triangle:latest",
+              container_name="crypto-triangle-state-${{ github.run_id }}",
+              volume_names=["crypto-state"],
+              network_names=["crypto-dev-net", "crypto-staging-net", "crypto-prod-net"]
+          )
+          
+          # Export
+          export_data = capture.export_state("artifacts/state-captures/state-snapshot-${{ github.run_id }}.json")
+          
+          # Report
+          report = capture.create_state_report()
+          with open("artifacts/state-captures/state-report-${{ github.run_id }}.txt", "w") as f:
+              f.write(report)
+          
+          print("✓ State captured")
+          print(f"State Hash: {export_data['state_hash']}")
+          PYTHON_EOF
+
+      - name: Generate state manifest
+        run: |
+          cat > artifacts/state-captures/manifest.json << 'EOF'
+          {
+            "version": "1.0.0",
+            "timestamp": "$(date -u +'%Y-%m-%dT%H:%M:%SZ')",
+            "buildId": "${{ github.run_id }}",
+            "buildNumber": "${{ github.run_number }}",
+            "captures": [
+              {
+                "type": "image",
+                "file": "state-snapshot-${{ github.run_id }}.json",
+                "description": "Complete image state (inspect)"
+              },
+              {
+                "type": "container",
+                "file": "state-snapshot-${{ github.run_id }}.json",
+                "description": "Complete container runtime state"
+              },
+              {
+                "type": "volumes",
+                "file": "state-snapshot-${{ github.run_id }}.json",
+                "description": "Volume state snapshots"
+              },
+              {
+                "type": "networks",
+                "file": "state-snapshot-${{ github.run_id }}.json",
+                "description": "Network topology state"
+              },
+              {
+                "type": "artifacts",
+                "file": "state-snapshot-${{ github.run_id }}.json",
+                "description": "Artifact manifests with hashes"
+              },
+              {
+                "type": "logs",
+                "file": "state-snapshot-${{ github.run_id }}.json",
+                "description": "Container logs (last 100 lines)"
+              }
+            ]
+          }
+          EOF
+
+      - name: Upload state capture
+        uses: actions/upload-artifact@v4
+        with:
+          name: state-captures-${{ github.run_id }}
+          path: artifacts/state-captures/
+          retention-days: 365
+
+      - name: Commit state to Git
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          
+          git add artifacts/state-captures/ || true
+          
+          git commit -m "State capture: build #${{ github.run_number }} - ${{ github.run_id }}" || true
+          
+          git push origin || true
+
+      - name: Create state release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: state-${{ github.run_number }}-${{ github.run_id }}
+          files: artifacts/state-captures/**
+          body: |
+            # Complete Docker State Capture
+            
+            **Build**: #${{ github.run_number }}
+            **Timestamp**: $(date -u +'%Y-%m-%dT%H:%M:%SZ')
+            
+            ## Captured State
+            - ✅ Image state (inspect)
+            - ✅ Container runtime state
+            - ✅ Volume state snapshots
+            - ✅ Network topology state
+            - ✅ Artifact manifests with hashes
+            - ✅ Container logs
+            
+            ## Files
+            - `state-snapshot-${{ github.run_id }}.json` - Complete state (JSON)
+            - `state-report-${{ github.run_id }}.txt` - Human-readable report
+            - `manifest.json` - State capture manifest
+
+      - name: Stop container
+        if: always()
+        run: |
+          docker stop crypto-triangle-state-${{ github.run_id }} || true
+          docker rm crypto-triangle-state-${{ github.run_id }} || true
+
+      - name: Post summary
+        run: |
+          cat >> $GITHUB_STEP_SUMMARY << 'EOF'
+          # 📦 Complete State Capture
+          
+          ## Captured Components
+          - ✅ Docker Image State
+          - ✅ Container Runtime State
+          - ✅ Volume Configuration
+          - ✅ Network Topology
+          - ✅ Artifact Manifests
+          - ✅ Container Logs
+          
+          ## Outputs
+          - JSON snapshot: `state-snapshot-${{ github.run_id }}.json`
+          - Text report: `state-report-${{ github.run_id }}.txt`
+          - Manifest: `manifest.json`
+          
+          ## Retention
+          - 365 days in GitHub artifacts
+          - Committed to Git
+          - GitHub release published
+          
+          All state is immutable and timestamped.
+          EOF

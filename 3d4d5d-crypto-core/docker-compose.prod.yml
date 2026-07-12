@@ -1,0 +1,65 @@
+version: '3.9'
+
+services:
+  # Main crypto triangle API
+  crypto-triangle:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: crypto-triangle-api
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+    networks:
+      - crypto-net
+    labels:
+      com.robdoe.system: "crypto-triangle"
+
+  # Attestation verifier
+  verifier:
+    build:
+      context: .
+      dockerfile: Dockerfile.verify
+    container_name: crypto-triangle-verifier
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./attestations:/attestations
+    networks:
+      - crypto-net
+    depends_on:
+      - crypto-triangle
+    labels:
+      com.robdoe.system: "verifier"
+    # Override for interactive verification
+    entrypoint: /bin/bash
+    stdin_open: true
+    tty: true
+
+  # Witness service
+  witness:
+    image: python:3.12-slim
+    container_name: robdoe-witness
+    volumes:
+      - ./robdoe_witness.py:/app/robdoe_witness.py:ro
+    working_dir: /app
+    command: python robdoe_witness.py
+    environment:
+      - PYTHONUNBUFFERED=1
+    networks:
+      - crypto-net
+    labels:
+      com.robdoe.service: "witness"
+
+networks:
+  crypto-net:
+    driver: bridge
+
+volumes:
+  attestations:
