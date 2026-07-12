@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-COM1 SERIAL CH340 - RAW BYTES TO GIT
-USB-CH340 on COM1 → NRF24 capture → Git push
+COM11 SERIAL CH340 - RAW BYTES TO GIT
+USB-CH340 on COM11 → NRF24 capture → Git push
 """
 
 import serial
@@ -13,14 +13,14 @@ from datetime import datetime
 from pathlib import Path
 
 print("=" * 70)
-print(" COM1 SERIAL CH340 - RAW BYTES TO GIT")
-print(" USB-CH340 on COM1 → NRF24 → Git Push")
+print(" COM11 SERIAL CH340 - RAW BYTES TO GIT")
+print(" USB-CH340 on COM11 → NRF24 → Git Push")
 print("=" * 70)
 
-COM_PORT = "COM1"
+COM_PORT = "COM11"
 BAUD_RATE = 115200
 GIT_REPO = r"C:\AiAgency101.robdoe"
-RAW_DIR = os.path.join(GIT_REPO, "com1_raw")
+RAW_DIR = os.path.join(GIT_REPO, "com11_raw")
 
 Path(RAW_DIR).mkdir(parents=True, exist_ok=True)
 os.chdir(GIT_REPO)
@@ -30,7 +30,7 @@ print(f"[*] Baud: {BAUD_RATE}")
 print(f"[*] Raw Dir: {RAW_DIR}\n")
 
 # CONNECT
-print("[...] Connecting to COM1...")
+print("[...] Connecting to COM11...")
 try:
     ser = serial.Serial(
         port=COM_PORT,
@@ -52,7 +52,7 @@ except Exception as e:
 
 # CAPTURE LOOP
 packet_count = 0
-print("[*] COM1 SERIAL - Capturing raw bytes...")
+print("[*] COM11 SERIAL - Capturing raw bytes...")
 print("[*] Press Ctrl+C to stop\n")
 
 try:
@@ -77,7 +77,7 @@ try:
             
             # Save
             date = timestamp.split("T")[0].replace("-", "")
-            filename = f"com1_{date}_{packet_count:06d}.json"
+            filename = f"com11_{date}_{packet_count:06d}.json"
             filepath = os.path.join(RAW_DIR, filename)
             
             with open(filepath, 'w') as f:
@@ -92,9 +92,9 @@ try:
             if packet_count % 10 == 0:
                 print(f"    [⚡] PUSH to Git ({packet_count} packets)...")
                 try:
-                    subprocess.run(["git", "add", "com1_raw/"], check=False, capture_output=True)
+                    subprocess.run(["git", "add", "com11_raw/"], check=False, capture_output=True)
                     subprocess.run(
-                        ["git", "commit", "-m", f"COM1: {packet_count} raw bytes"],
+                        ["git", "commit", "-m", f"COM11: {packet_count} raw bytes"],
                         check=False,
                         capture_output=True
                     )
@@ -110,9 +110,9 @@ finally:
     if packet_count > 0:
         print(f"\n[⚡] FINAL PUSH: {packet_count} packets")
         try:
-            subprocess.run(["git", "add", "com1_raw/"], check=False, capture_output=True)
+            subprocess.run(["git", "add", "com11_raw/"], check=False, capture_output=True)
             subprocess.run(
-                ["git", "commit", "-m", f"COM1 FINAL: {packet_count} raw bytes"],
+                ["git", "commit", "-m", f"COM11 FINAL: {packet_count} raw bytes"],
                 check=False,
                 capture_output=True
             )
