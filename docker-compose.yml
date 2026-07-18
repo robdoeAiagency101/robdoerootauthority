@@ -1,0 +1,18 @@
+services:
+  robdoe-engine:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: robdoe_core_engine
+    restart: always
+    privileged: true
+    network_mode: "host"
+    volumes:
+      - ./data:/app/data
+      - C:\RobDoeIdentity:/app/identity:ro
+    environment:
+      - RUN_MODE=executive
+      - TARGET_FREQ=dedicated
+      - IDENTITY_NODE=/app/identity/hardware_manifest.json
+      - STATE_FILE=/app/data/binary_state.io
+    command: ["/app/robdoe.MyWare"]
