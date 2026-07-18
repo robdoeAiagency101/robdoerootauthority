@@ -1,16 +1,22 @@
-﻿version: '3.8'
-
 services:
   robdoe-core-node:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: robdoe_sovereign_authority_node
-    environment:
-      - IS_DOCKER_CONTAINER=true
-      - DOTNET_RUNNING_IN_CONTAINER=true
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
     stdin_open: true
     tty: true
-    restart: unless-stopped
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - IS_DOCKER_CONTAINER=${IS_DOCKER_CONTAINER}
+      - DOTNET_RUNNING_IN_CONTAINER=${DOTNET_RUNNING_IN_CONTAINER}
+      - WITNESS_PORT=${WITNESS_PORT}
+      - SERIAL_COM_PORT=${SERIAL_COM_PORT}
+      - SERIAL_BAUD_RATE=${SERIAL_BAUD_RATE}
+    extra_hosts:
+      - "${HOST_GATEWAY_IP}:host-gateway"
     volumes:
       - C:\SPACE:/workspace
+    ports:
+      - "${WITNESS_PORT}:${WITNESS_PORT}"
