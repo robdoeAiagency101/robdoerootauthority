@@ -8,13 +8,15 @@ services:
     stdin_open: true
     tty: true
     environment:
-      - NODE_ENV=${NODE_ENV}
-      - IS_DOCKER_CONTAINER=${IS_DOCKER_CONTAINER}
-      - WITNESS_PORT=${WITNESS_PORT}
+      - NODE_ENV=production
+      - IS_DOCKER_CONTAINER=true
+      - WITNESS_PORT=7777
+      - HARDWARE_FREQUENCY=40MHz
+      - SERIAL_BAUD_RATE=115200
     extra_hosts:
-      - "${HOST_GATEWAY_IP}:host-gateway"
+      - "host.docker.internal:host-gateway"
     volumes:
       - C:\SPACE:/workspace
-      - C:\SPACE\deploy_package\channel_venous_out:/workspace/circulating_data
+      - C:\SPACE\deploy_package\circulation_macro_015:/workspace/coupled_phase_flow
     ports:
-      - "${WITNESS_PORT}:${WITNESS_PORT}"
+      - "7777:7777"
