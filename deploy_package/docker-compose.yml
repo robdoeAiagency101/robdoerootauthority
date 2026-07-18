@@ -1,0 +1,16 @@
+﻿version: '3.8'
+
+services:
+  robdoe-core-node:
+    build: .
+    container_name: robdoe_sovereign_authority_node
+    environment:
+      - IS_DOCKER_CONTAINER=true
+      - DOTNET_RUNNING_IN_CONTAINER=true
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+    volumes:
+      - C:\SPACE:/workspace
