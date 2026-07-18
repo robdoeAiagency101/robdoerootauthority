@@ -10,13 +10,11 @@ services:
     environment:
       - NODE_ENV=${NODE_ENV}
       - IS_DOCKER_CONTAINER=${IS_DOCKER_CONTAINER}
-      - DOTNET_RUNNING_IN_CONTAINER=${DOTNET_RUNNING_IN_CONTAINER}
       - WITNESS_PORT=${WITNESS_PORT}
-      - SERIAL_COM_PORT=${SERIAL_COM_PORT}
-      - SERIAL_BAUD_RATE=${SERIAL_BAUD_RATE}
     extra_hosts:
       - "${HOST_GATEWAY_IP}:host-gateway"
     volumes:
       - C:\SPACE:/workspace
+      - C:\SPACE\deploy_package\channel_venous_out:/workspace/circulating_data
     ports:
       - "${WITNESS_PORT}:${WITNESS_PORT}"
