@@ -1,0 +1,33 @@
+[
+  {
+    "operator_identity": "RobDoe",
+    "authority_domain": "robdoe.com",
+    "github_root": "https://github.com/robdoeAiagency101/robdoerootauthority",
+    "truth_layer": "ATL v2.0.0-espVmark",
+    "truth_layer_active": "ATL v2.0.0-espVmark",
+    "timestamp_utc": "2026-07-23T02:07:16.336Z",
+    "tactile_assist_layer": {
+      "meta": {
+        "purpose": "Assistive Navigation",
+        "profile": "espVmark.ROBDOE",
+        "compliance": "Non-Medical"
+      },
+      "nav_guidance": {
+        "freq_hz": 150,
+        "cycle": "Steady",
+        "pin_out": "GPIO_12"
+      },
+      "boundary_warning": {
+        "freq_hz": 250,
+        "cycle": "Double_Pulse",
+        "pin_out": "GPIO_14"
+      },
+      "zone_transition": {
+        "freq_hz": 80,
+        "cycle": "Long_Sweep",
+        "pin_out": "GPIO_27"
+      }
+    },
+    "espVmark_signature": "f8ff05b1edc7cf46a2cc85756f27de280346121a46e61751e9de3250eb5b3001"
+  }
+]
