@@ -1,0 +1,9 @@
+﻿{
+    "commit":  "48bb0a5d0a2a610f6a939e7304101a81b39c438c",
+    "node":  "Robdoerootauthority",
+    "timestamp":  "2026-06-27T10:33:07.5179170+10:00",
+    "artifact_type":  "witnessed_witness_daemon",
+    "signature":  "RobDoe-AI-Oracleform::b6d9b80cc5114dad34155521945f70a746863426e1032746f9bdfcbbbd2a4add",
+    "operator":  "Rebecca (Bex)",
+    "heartbeat":  true
+}
