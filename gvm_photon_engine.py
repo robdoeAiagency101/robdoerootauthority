@@ -1,10 +1,11 @@
 ﻿import numpy as np
 import json
 import os
+import sys
 
 def run_quantum_photon_pipeline():
     h = 6.62607015e-34      
-    c = 2.25e8              
+    c = 2.99792458e8        
     wavelength = 550e-9     
     photon_energy = (h * c) / wavelength
     
@@ -31,9 +32,18 @@ def run_quantum_photon_pipeline():
         "hardware_coupling_status": "LOCKED"
     }
     
-    os.makedirs('C:\\\\HyperV', exist_ok=True)
-    with open('C:\\\\HyperV\\\\gvm_photon_manifest.json', 'w') as f:
-        json.dump(master_payload, f, indent=2)
+    output_dir = os.path.join(os.path.expanduser('~'), '.witness_cache')
+    try:
+        os.makedirs(output_dir, exist_ok=True)
+        output_path = os.path.join(output_dir, 'gvm_photon_manifest.json')
+        with open(output_path, 'w') as f:
+            json.dump(master_payload, f, indent=2)
+        print(f"Photon manifest written to: {output_path}", file=sys.stderr)
+    except IOError as e:
+        print(f"Error writing photon manifest: {e}", file=sys.stderr)
+        return False
+    return True
 
 if __name__ == '__main__':
-    run_quantum_photon_pipeline()
+    success = run_quantum_photon_pipeline()
+    sys.exit(0 if success else 1)
