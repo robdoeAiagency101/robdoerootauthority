@@ -1,0 +1,71 @@
+{
+    "timestamp":  "2026-09-12T01:45:51.3193381+10:00",
+    "repos":  [
+                  {
+                      "path":  "C:\\AiFactori\\AiFACTORi",
+                      "head":  "107db5f22f6013038cbf34b21d1c66c8342ed671",
+                      "fsck":  ""
+                  },
+                  {
+                      "path":  "C:\\AiFactori\\GOOGLE-demo",
+                      "head":  "df189f3b03fb27be392ad022f7470a0b4dfbb477",
+                      "fsck":  ""
+                  },
+                  {
+                      "path":  "C:\\AiFactori\\welcome-to-docker",
+                      "head":  "c8cd4b31b2f1f06bb865fe7a0d328f2d85777353",
+                      "fsck":  ""
+                  },
+                  {
+                      "path":  "C:\\AiFactori\\xl1-skills",
+                      "head":  "cf76c121b66c2cafacbfc2708bd46112d71059e7",
+                      "fsck":  ""
+                  },
+                  {
+                      "path":  "C:\\AiFactori\\XYO-Foundation",
+                      "head":  "bebebbf34030b752ea71150cabd025b5cc2e983e",
+                      "fsck":  ""
+                  },
+                  {
+                      "path":  "C:\\AiFactori\\xyo-skills",
+                      "head":  "05e1ca8ff7bc90afde89ebdeb68fefd64b3f3025",
+                      "fsck":  ""
+                  },
+                  {
+                      "path":  "C:\\AiFactori\\AiFACTORi\\welcome-to-docker",
+                      "head":  "c8cd4b31b2f1f06bb865fe7a0d328f2d85777353",
+                      "fsck":  ""
+                  },
+                  {
+                      "path":  "C:\\AiFactori\\AiFACTORi\\welcome-to-docker\\bindmount-apps",
+                      "head":  "1b1ebb9340c5b26e4a07472b02c7c31d775859d2",
+                      "fsck":  ""
+                  },
+                  {
+                      "path":  "C:\\AiFactori\\AiFACTORi\\welcome-to-docker\\multi-container-app",
+                      "head":  "244c4022238786c39a946d5c0faeb1237c8f01cf",
+                      "fsck":  ""
+                  },
+                  {
+                      "path":  "C:\\AiFactori\\AiFACTORi\\welcome-to-docker\\python-docker-example",
+                      "head":  "f79359f34b29d0cf8c10fd509f0dba84b05b6581",
+                      "fsck":  "dangling tree 0143bc571c184c38c26e0e1c1ae7b982305deb5d\r\ndangling tree c25e19246a4ecd657b1829ed1d9d50b167c9fefa\r\ndangling tree 2a23b92f8b081fbb7248cee1f95e9404b7cdd602\r\n"
+                  },
+                  {
+                      "path":  "C:\\AiFactori\\welcome-to-docker\\bindmount-apps",
+                      "head":  "1b1ebb9340c5b26e4a07472b02c7c31d775859d2",
+                      "fsck":  ""
+                  },
+                  {
+                      "path":  "C:\\AiFactori\\welcome-to-docker\\multi-container-app",
+                      "head":  "244c4022238786c39a946d5c0faeb1237c8f01cf",
+                      "fsck":  ""
+                  },
+                  {
+                      "path":  "C:\\AiFactori\\welcome-to-docker\\python-docker-example",
+                      "head":  "f79359f34b29d0cf8c10fd509f0dba84b05b6581",
+                      "fsck":  "dangling tree 0143bc571c184c38c26e0e1c1ae7b982305deb5d\r\ndangling tree c25e19246a4ecd657b1829ed1d9d50b167c9fefa\r\ndangling tree 2a23b92f8b081fbb7248cee1f95e9404b7cdd602\r\n"
+                  }
+              ],
+    "mesh":  "AiFACTORi"
+}
