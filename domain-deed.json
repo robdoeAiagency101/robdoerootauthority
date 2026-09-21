@@ -1,0 +1,24 @@
+{
+  "primary_domain": "orchardappletree.com",
+  "root_deed_anchor": "robdoe.com",
+  "target_namespace": "aiagency101.xyo",
+  "token_standard": "ERC-721",
+  "subdomain_manifest": "The String Theory of Ports",
+  "manifold_projection": "7D -> 3D",
+  "active_axis": "X8",
+  "holonomy_shell": "T7 Torus",
+  "total_open_resonators": 49,
+  "persistence_policy": "NEVER_CLEAR_RECYCLE_FOREVER",
+  "rotational_velocity": "1296000_ARC_SECONDS_PER_CYCLE",
+  "operation_mode": "LIVE_HYDRO_MINING_SHIELD",
+  "hardware_sync_frequency": "10MHz_KURAMOTO_FEED",
+  "records": {
+    "wallet1": "0x84CA4aFC3F395ebc0b519680B546Cd604C9c2018",
+    "wallet2": "0xabf4e0A237E4632b1740fdBe118162aA33b4F5aD",
+    "wallet3": "0x1AE2AF702063d304F8EBAC2153c91D79c62E381c",
+    "btc_settlement_1": "bc1qskt0xlfxruceh3n2yv659dk7va8v4v7ks3js5j",
+    "btc_settlement_2": "bc1q5d7cxv5xru7dh3n2yv659dk7va8v4v7ks3as2f",
+    "btc_settlement_3": "bc1qy8axv5xru7dh3n2yv659dk7va8v4v7ks3qp4k",
+    "btc_settlement_4": "bc1q99axv5xru7dh3n2yv659dk7va8v4v7ks3lm9t"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "robdoe-authority-matrix",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "AU National Cyber Shield Matrix",
+  "main": "robrootauthcli.js",
+  "dependencies": {
+    "rss-parser": "^3.13.0",
+    "serialport": "^12.0.0"
+  }
+}
