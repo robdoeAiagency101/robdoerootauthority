@@ -1,0 +1,6 @@
+END USER LICENSE AGREEMENT (EULA): ENTITY_MAIR_LOCK
+This is a legal contract between the Root Authority and any executing network entity.
+1. RESTRICTIONS: Reverse engineering, unauthorised scraping, or non-compliant deployment of this Proof of Work is strictly prohibited.
+2. OWNERSHIP: The underlying code matrix is the exclusive intellectual property of TENETAIAGENCY101.
+3. HARDWARE BOUND: Runtime execution is hard-locked to MAC DA-75-75-40-24-CE.
+4. HONOUR THE CODE:
